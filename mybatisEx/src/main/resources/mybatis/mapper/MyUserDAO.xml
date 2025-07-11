@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "D:\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fullstack.dao.MyUserDao">
+
+	<select id="list" resultType="com.fullstack.dto.MyUserDTO">
+		Select id, name from myuser
+	</select>
+</mapper>

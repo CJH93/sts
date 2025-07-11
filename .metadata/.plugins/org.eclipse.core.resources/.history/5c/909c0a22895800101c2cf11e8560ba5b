@@ -1,0 +1,9 @@
+package com.fullstack.service;
+
+import com.fullstack.dto.BoardDTO;
+
+public interface BoardService {
+
+	Long register(BoardDTO boardDTO);
+	
+}

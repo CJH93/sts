@@ -1,0 +1,10 @@
+package com.fullstack.service;
+
+import com.fullstack.DTO.TodoDTO;
+
+public interface TodoService {
+
+	Long register(TodoDTO todoDTO);
+	
+	
+}

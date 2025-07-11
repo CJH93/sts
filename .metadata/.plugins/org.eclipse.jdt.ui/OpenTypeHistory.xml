@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=diExam/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.fullstack.bean{Printer.java[Printer" modifiers="513" timestamp="1750907556828"/>
+    <typeInfo handle="=guestbook/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.fullstack.entity{BaseEntity.java[BaseEntity" modifiers="1025" timestamp="1751357844444"/>
+    <typeInfo handle="=guestbook/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.fullstack.service{GuestBookService.java[GuestBookService" modifiers="513" timestamp="1751512674701"/>
+    <typeInfo handle="=guestbook/C:\/Users\/tj\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.data\/spring-data-jpa\/3.4.7\/f1f7e2e85a170ce5364d9712879ad6eea38857ac\/spring-data-jpa-3.4.7.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1751254005961"/>
+    <typeInfo handle="=bootBoard/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.fullstack.service{ReplyService.java[ReplyService" modifiers="513" timestamp="1751872021427"/>
+    <typeInfo handle="=react-board/C:\/Users\/tj\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework\/spring-webmvc\/6.2.8\/a98cbaba4b55b4fee2d752041130e2e0f7014b27\/spring-webmvc-6.2.8.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.web.servlet.config.annotation(WebMvcConfigurer.class[WebMvcConfigurer" modifiers="1537" timestamp="1750819733838"/>
+</typeInfoHistroy>

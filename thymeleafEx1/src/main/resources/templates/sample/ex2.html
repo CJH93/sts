@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.st
+	{
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<!-- 
+		<li th:each="dto, sts : ${list}" th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}">
+		 -->
+		
+		<li th:each="dto, sts : ${list}" th:class="${dto.sno % 5 == 0} ? 'st'" th:text="${dto}">
+		
+		<!-- 
+		<li th:each="dto, sts : ${list}" th:if="${dto.sno % 2 == 0}">  -->
+			<!-- [[${sts.index}]] ---- [[${dto}]]<br>  --> 
+			<!-- if ~ unless 조건 구문. unless 는 else 가 아님. 조건을 또 줘야함 
+		-->
+			
+		<!--
+		<li th:each="dto, sts : ${list}"> 
+		<span th:if="${dto.sno % 5 == 0}" th:text="${'--------------------------'}">
+		</span>	
+		
+		<span th:unless="${dto.sno % 5 == 0}" th:text="${dto.first}">
+		</span>  
+		-->	
+		
+		</li>
+	</ul>
+</body>
+</html>

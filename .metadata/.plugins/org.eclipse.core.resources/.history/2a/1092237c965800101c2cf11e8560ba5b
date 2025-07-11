@@ -1,0 +1,41 @@
+package com.fullstack.service;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.fullstack.dto.BoardDTO;
+import com.fullstack.entity.Board;
+import com.fullstack.entity.Member;
+import com.fullstack.repository.BoardRepository;
+import com.fullstack.repository.MemberRepository;
+
+@SpringBootTest
+public class BoardImplTest {
+
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	@Test
+	public void regiTest()
+	{
+		Optional<Board> res = memberRepository.findById(user100@aaa.com);
+		
+		Member member = res.get();
+		
+		BoardDTO boardDTO = BoardDTO.builder()
+				.title("유닛 테스트용 제목")
+				.content("유닛 테스트용 내용")
+				.writerEmail(member.getEmail())
+				.build();
+		
+		System.out.println(boardService.register(boardDTO));
+		
+	}
+}
+

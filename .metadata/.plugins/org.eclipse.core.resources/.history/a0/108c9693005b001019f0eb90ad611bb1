@@ -1,0 +1,24 @@
+package com.fullstack.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fullstack.service.ReplyService;
+
+import lombok.RequiredArgsConstructor;
+
+// RestFul 방식의 컨트롤러 선언
+
+@RestController
+@RequestMapping("/replies/")
+@RequiredArgsConstructor
+public class ReplyController {
+
+	private final ReplyService replyService;
+	
+	// 댓글 요청시 서버 URI 는 게시글 번호를 파라미터로 받는 pathvariable 을 사용
+	@GetMapping(value = "/board/{bno}", produces = MediaType.APPLICATION.JSON_VALUE)
+	
+	
+}

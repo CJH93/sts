@@ -1,0 +1,24 @@
+package com.fullstack.service;
+
+import com.fullstack.dto.BoardDTO;
+import com.fullstack.entity.Board;
+import com.fullstack.repository.BoardRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class BoardServiceImpl implements BoardService{
+	
+	private final BoardRepository boardRepository;
+
+	@Override
+	public Long register(BoardDTO boardDTO) {
+		
+		Board board = dtoToEntity(boardDTO);
+		boardRepository.save(board);
+		
+		return board.getBno();
+	}
+	
+	
+}

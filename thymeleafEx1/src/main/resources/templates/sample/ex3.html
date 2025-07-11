@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--
+	th:inline 속성 : 타임리프의 값을 스크립트에 적용하도록 하는 속성 
+	 -->
+	 <h1 th:text="${result}"></h1>
+	 <h1 th:text="${dto}"></h1>
+	 
+	 <ul>
+	 	<!-- th:block : html 로 생성되지 않는 타임리프의 로직 영역을 뜻함 -->
+	 	<th:block th:if="${dto != null}">
+	 		<li th:text="${dto.sno}"></li>
+	 	</th:block>
+	 </ul>
+	 
+<script>
+//	var msg = [[${result}]];
+//	var dto = [[${dto}]];
+</script>
+</body>
+</html>

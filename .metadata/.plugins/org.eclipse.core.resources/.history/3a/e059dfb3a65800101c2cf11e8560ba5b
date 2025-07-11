@@ -1,0 +1,28 @@
+package com.fullstack.service;
+
+import com.fullstack.dto.BoardDTO;
+import com.fullstack.entity.Board;
+import com.fullstack.entity.Member;
+
+public interface BoardService {
+
+	Long register(BoardDTO boardDTO);
+	
+	// 서비스 구현 객체가 사용할 DTO -> Entity 변환 메서드 정의
+		default Board dtoToEntity(BoardDTO boardDTO)
+		{
+			Member member = Member.builder()
+					.email(boardDTO.getWriterEmail())
+					.build();
+			
+			Board board = Board.builder()
+					.bno(boardDTO.getBno())
+					.title(boardDTO.getTitle())
+					.content(boardDTO.getContent())
+					.writer(member)
+					.build();
+					
+			return board;
+		}
+	
+}

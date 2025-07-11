@@ -1,0 +1,41 @@
+package com.fullstack;
+
+import java.awt.print.Pageable;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
+import com.fullstack.entity.Todo;
+import com.fullstack.repository.TodoRepository;
+
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
+@SpringBootTest
+class ReactBoardApplicationTests {
+
+	@Autowired
+	private TodoRepository repository;
+	
+	
+	
+	@Test
+	void contextLoads() {
+		for (int i = 1; i <= 100; i++)
+		{
+			Todo todo = Todo.builder()
+					.title("Title..." + i)
+					.dueDate(LocalDateTime.now())
+					.writer("user00")
+					.build();
+			repository.save(todo);
+			
+		}
+		
+	}
+
+}

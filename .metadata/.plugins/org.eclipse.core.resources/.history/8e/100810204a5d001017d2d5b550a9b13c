@@ -1,0 +1,44 @@
+package com.fullstack.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import com.fullstack.DTO.TodoDTO;
+import com.fullstack.entity.Todo;
+import com.fullstack.repository.TodoRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Transactional
+@Log4j2
+@RequiredArgsConstructor
+public class TodoServiceImpl implements TodoService{
+
+	private final TodoRepository todoRepository;
+	
+	private final ModelMapper modelMapper;
+	
+	@Override
+	public Long register(TodoDTO todoDTO)
+	{
+		log.info("Todo 등록 수행");
+		
+		Todo todo = modelMapper.map(todoDTO, Todo.class);
+		
+		todoRepository.save(todo);
+		
+		return null;
+	}
+	
+}
+
+
+
+
+
+
+
+

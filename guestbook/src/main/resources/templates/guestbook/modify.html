@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+        <h1 class="mt-4">GuestBook Modify Page</h1>
+        <form action="/guestbook/modify" method="post">
+        	<input type="hidden" name="page" th:value="${requestDTO.page}">
+        	<div class="form-group">
+            <label >Gno</label>
+            <input type="text" class="form-control" name="gno" th:value="${dto.gno}" readonly >
+        </div>
+
+        <div class="form-group">
+            <label >Title</label>>
+            <input type="text" class="form-control" name="title" th:value="${dto.title}" >
+        </div>
+        <div class="form-group">
+            <label >Content</label>
+            <textarea class="form-control" rows="5" name="content">[[${dto.content}]]</textarea>
+        </div>
+        <div class="form-group">
+            <label >Writer</label>
+            <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
+        </div>
+        <div class="form-group">
+            <label >RegDate</label>
+            <input type="text" class="form-control" th:value="${dto.regDate}" readonly>
+        </div>
+        <div class="form-group">
+            <label >ModDate</label>
+            <input type="text" class="form-control" th:value="${dto.modDate}" readonly>
+        </div>
+
+        </form>
+        
+        <button type="button" class="btn btn-primary modifyBtn">Modify</button>
+
+        <button type="button" class="btn btn-info listBtn">List</button>
+
+        <button type="button" class="btn btn-danger removeBtn">Remove</button>
+        
+        <script>
+			const actionForm = $('form');
+			
+			$('.modifyBtn').click(()=>
+			{
+				if(!confirm('수정할래요?'))
+					{
+						return;			
+					}
+				actionForm
+				.attr('action', '/guestbook/modify')
+				.attr('method', 'post')
+				.submit();
+			});
+			
+			$('.removeBtn').click(()=>
+			{
+				if(!confirm('삭제할래요?'))
+					{
+						return;			
+					}
+				actionForm
+				.attr('action', '/guestbook/remove')
+				.attr('method', 'post')
+				.submit();
+			});
+			
+			$('.listBtn').click(()=>
+			{
+				var page = $('input[name="page"]');
+				
+				// 폼의 모든 내용을 지움
+				actionForm.empty();
+				
+				// 폼이 전송될때 파라미터 추가
+				actionForm.append(page);
+				
+				actionForm
+				.attr('action', '/guestbook/list')
+				.attr('method', 'get')
+				.submit();
+			});
+			
+			
+        </script>
+        
+    </th:block>
+    
+</th:block>
+
+
+
+
+

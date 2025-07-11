@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- @{} : path 를 지정하면 링크가 자동 생성됨 -->
+	<ul>
+		<li th:each="dto : ${list}">
+			<a th:href="@{/sample/exView(sno=${dto.sno})}">[[${dto}]]</a>
+			<a th:href="@{/sample/exView/{sno}(sno=${dto.sno})}">[[${dto}]]</a>
+		</li>
+	</ul>
+</body>
+</html>
