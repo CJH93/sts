@@ -1,8 +1,0 @@
-package com.fullstack.searchBoard;
-
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication 
-public class SearchBoardImplTest {
-
-}

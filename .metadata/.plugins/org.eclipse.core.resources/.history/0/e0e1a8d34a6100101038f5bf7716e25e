@@ -1,0 +1,5 @@
+package com.fullstack.service.mallapi;
+
+public class ProductServiceImpl implements ProductService {
+
+}

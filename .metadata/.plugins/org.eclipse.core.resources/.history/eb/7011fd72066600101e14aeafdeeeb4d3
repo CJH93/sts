@@ -1,0 +1,31 @@
+package com.fullstack.security;
+
+import java.io.IOException;
+
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+/*
+ * Access Token 은 API 서버의 특정 경로에 접근하기 위해서 사용됨
+ * 이 토큰은 HTTP 헤더의 Autorization 항목의 값으로 전달하여
+ * 서버에서 이를 체크해서 사용함
+ * 이 헤더는 <type><token> 형식으로 구성.
+ * 중간에 공백 문자로 구분을 지음
+ * 일반적으로 JWT 를 활용할때 'Bearer' 라는 타입으로 지정되어 사용됨
+ * 
+ */
+
+public class JWTCheckerFilter extends OncePerRequestFilter{
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+
+		
+	}
+
+}

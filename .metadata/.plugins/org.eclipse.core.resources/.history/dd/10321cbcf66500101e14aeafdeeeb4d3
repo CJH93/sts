@@ -1,0 +1,13 @@
+package com.fullstack.security;
+
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+// 로그인이 성공되면 이 핸들러를 통해 클라이언트에 전달될 메세지를 생성함
+// 이 메세지는 DTO 의 claims() 를 통해서 JSON 데이터를 구성함
+// 이 핸들러는 반드시 AuthenticationSuccessHandler 인터페이스를 상속 받아야함
+
+public class APILoginSuccessHandler implements AuthenticationSuccessHandler{
+
+	
+	
+}

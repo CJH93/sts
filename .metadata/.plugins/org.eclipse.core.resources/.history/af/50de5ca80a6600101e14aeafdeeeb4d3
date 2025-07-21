@@ -1,0 +1,80 @@
+package com.fullstack.security;
+
+import java.io.IOException;
+
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
+
+/*
+ * Access Token 은 API 서버의 특정 경로에 접근하기 위해서 사용됨
+ * 이 토큰은 HTTP 헤더의 Authorization 항목의 값으로 전달하여
+ * 서버에서 이를 체크해서 사용함
+ * 이 헤더는 <type><token> 형식으로 구성.
+ * 중간에 공백 문자로 구분을 지음
+ * 일반적으로 JWT 를 활용할때 'Bearer' 라는 타입으로 지정되어 사용됨
+ * 
+ * 스프링에서는 이 토큰을 이용, 리소스의 접근을 제어하는데, intercepter 라는 개념을 사용하고
+ * 부트에서는 filter 를 사용해서 이를 제어함
+ * 
+ * 필터 내부에서는 특정 경로에 접근하는 요청에 대해 인증을 먼저 처리(필터)
+ * 이후 후숙 작업을 처리함
+ * 
+ * 아래의 부모 클래스는 모든 요청에 대해서 체크하려고 할때 사용하는 필터
+ * 즉 모든 요청은 이 필터를 거치고, 여기서 필터링된 요청만 요청 리소스에 요청을 보내도록 설정함
+ * 참고로 filter 는 servlet 과 같이 적용함
+ * 
+ */
+
+@Log4j2
+public class JWTCheckerFilter extends OncePerRequestFilter{
+
+	// 체크하지 않을 경로나 메서드(get/post) 등을 지정할때 사용되는 메서드 오버라이드
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+		
+		// 서버로 요청이 발생될때, 인증필터 작업을 하지 말아야 하는 요청도 있음
+		// options 요청 제외
+		if(request.getMethod().equals("OPTIONS"))
+		{
+			return true;
+		}
+		
+		String path = request.getRequestURI();
+		
+		log.info("요청 Path" + path);
+		
+		// 인증을 처리하는 경로에 대한 필터 제외
+		if(path.startsWith("/api/member/"))
+		{
+			return true;
+		}
+		
+		// 이미지 등의 조회도 필터 죄에
+		if(path.startsWith("/api/products/view"))
+		{
+			return true;
+		}
+		
+		log.info(path);
+		
+		return false;
+	}
+	
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+
+		log.info("-------------------------------------");
+		log.info("-------------------------------------");
+		log.info("-------------------------------------");
+		
+		filterChain.doFilter(request, response); // 통과
+		
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.fullstack.security;
+
+import java.io.IOException;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
+
+// 로그인이 성공되면 이 핸들러를 통해 클라이언트에 전달될 메세지를 생성함
+// 이 메세지는 DTO 의 claims() 를 통해서 JSON 데이터를 구성함
+// 이 핸들러는 반드시 AuthenticationSuccessHandler 인터페이스를 상속 받아야함
+@Log4j2
+public class APILoginSuccessHandler implements AuthenticationSuccessHandler{
+
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+		log.info("---------------------인증 핸들러 호출됨---------------------");
+		log.info(authentication);
+		log.info("------------------------------------------");
+		
+		
+	}
+
+}

@@ -1,0 +1,56 @@
+package com.fullstack.domain.secure;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+// 부트에서 인증을 적용하게 되면, 기본적으로 제공되는 인증 처리 API 들이 있음
+// 이 중 UserDetail 이라는 패키지의 User 클래스가 대표적
+// 이것을 상속 받아 인증을 처리하도록 함
+// 클래스 이므로 생성자를 사용할 수 있는 구조로 작성 예정
+@Getter
+@Setter
+@ToString
+public class ReactMemberDTO extends User{
+
+	private String email;
+	private String pw;
+	private String nickname;
+	private boolean social;
+	private List<String> roleNames = new ArrayList<>();
+	
+	public ReactMemberDTO(String email, String pw, String nickname, boolean social, List<String> rolenames) 
+	{
+		super
+		(
+			email,
+			pw,
+			rolenames.stream().map(str -> new SimpleGrantedAuthority("ROLE_" + str)).collect(Collectors.toList())
+		);
+
+		// 이후 작업은 파라미터로 얻은 정보를 DTO 에 매핑
+		this.email = email;
+		this.pw = pw;
+		this.nickname = nickname;
+		this.social = social;
+		this.roleNames = rolenames;
+	}
+
+	// JWT 토큰 : JSON 웹 토큰이라는 클라이언트에서 서버로 인증을 처리할때 사용되는 대표적 토큰
+	// 이 토큰은 서버에
+	
+}
+
+
+
+
+

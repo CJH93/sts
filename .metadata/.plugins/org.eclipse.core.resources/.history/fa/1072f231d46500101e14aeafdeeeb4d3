@@ -1,0 +1,48 @@
+package com.fullstack.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+/*
+ * API 서버는 외부에서 Ajax 로 호출되기 때문에, 기존의 JSP 서버 방식과 차이가 있음
+ * 스프링 Secure 은 기본적으로 다른 도메인에서 Ajax 호출을 차단함
+ * 때문에 CORS 설정과 Get 방식 외의 호출 시에 CSRF 공격을 막기 위한 설정이
+ * 기본적으로 활성화 되어 있으므로 이를 변경해주고 개발 해야함
+ * 
+ * 이 설정 클래스는 이를 적용할 클래스이고, 추가적으로 인증에 관련된 모듈도 추가함
+ */
+
+@Configuration
+@Log4j2
+@RequiredArgsConstructor
+public class CustonmSecurityConfig {
+
+	@Bean
+	// 위 설정이 적용된 빈을 리턴하는 메서드 정의
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
+	{
+		log.info("---------------------Security Config-------------------------");
+		
+		// cors 설정
+		http.cors(httpSecurityCorsConfigurer -> {
+			httpSecurityCorsConfigurer.configurationSource(null);
+			return http.build();
+		});
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

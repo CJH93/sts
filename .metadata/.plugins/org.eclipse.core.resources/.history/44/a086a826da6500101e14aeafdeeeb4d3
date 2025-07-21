@@ -1,0 +1,11 @@
+package com.fullstack.repository.secure;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fullstack.domain.ReactMember;
+
+public interface MemberRepository extends JpaRepository<ReactMember, String> {
+	
+	
+	
+}

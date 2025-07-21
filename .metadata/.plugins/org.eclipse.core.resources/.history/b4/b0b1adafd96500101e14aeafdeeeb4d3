@@ -1,0 +1,5 @@
+package com.fullstack.repository.secure;
+
+public interface MemberRepository {
+
+}

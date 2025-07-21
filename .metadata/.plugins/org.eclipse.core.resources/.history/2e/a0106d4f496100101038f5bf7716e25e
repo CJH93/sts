@@ -1,0 +1,11 @@
+package com.fullstack.service.mallapi;
+
+import com.fullstack.DTO.PageRequestDTO;
+import com.fullstack.DTO.PageResponseDTO;
+import com.fullstack.mallapi.dto.ProductDTO;
+
+public interface ProductService {
+
+	PageResponseDTO<ProductDTO> getList(ProductDTO productDTO);
+	
+}

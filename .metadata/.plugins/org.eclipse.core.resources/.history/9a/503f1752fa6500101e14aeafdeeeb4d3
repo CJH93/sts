@@ -1,0 +1,10 @@
+package com.fullstack.security;
+
+/*
+ * 인증에 실패하면, BadCredentialException 타입의 예외가 발생함
+ * 
+ */
+
+public class APILoginFailHandler {
+
+}

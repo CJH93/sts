@@ -1,5 +1,0 @@
-package com.fullstack.service;
-
-public interface BoardService {
-
-}

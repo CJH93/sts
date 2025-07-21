@@ -1,0 +1,14 @@
+package com.fullstack.security;
+
+/*
+ * Spring security 에서는 사용자의 정보를 담는 인터페이스가 있음(로그인 및 인가 요청시)
+ * 이 정보를 불러오기 위해서 반드시 구현해야 하는 인터페이스가 아래 상속 받는 인터페이스임
+ * 이것을 상속 받아서 필요한 메서드를 오버라이드 해주면, 가져온 사용자의 정보를 통해 인증 처리를 구현함 
+ * 
+ */
+
+public class CustomUserDetailService {
+
+	
+	
+}

@@ -1,8 +1,0 @@
-package com.fullstack.dto;
-
-// 필드 : title, content, email, name, regDate, modDate, bno, 댓글수
-public class BoardDTO {
-
-	
-	
-}

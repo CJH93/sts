@@ -27,6 +27,15 @@ public class TodoController {
 
 	private final TodoService todoService;
 	
+	// test 라는 get 요청이 오면 hello 라고 출력
+	// 뷰어 없이 문자열 출력만
+	@GetMapping("/test")
+	public String test()
+	{
+		return new String("hello");
+	}
+	
+	
 	// todo 목록 처리 메서드 구현
 	@GetMapping("/list")
 	public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO)

@@ -1,0 +1,19 @@
+package com.fullstack.domain.secure;
+
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+// 부트에서 인증을 적용하게 되면, 기본적으로 제공되는 인증 처리 API 들이 있음
+// 이 중 UserDetail 이라는 패키지의 User 클래스가 대표적
+// 이것을 상속 받아 인증을 처리하도록 함
+// 클래스 이므로 생성자를 사용할 수 있는 구조로 작성 예정
+public class ReactMemberDTO extends User{
+
+	public ReactMemberDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
+		// TODO Auto-generated constructor stub
+	}
+
+}

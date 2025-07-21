@@ -1,0 +1,5 @@
+package com.fullstack.utils;
+
+public class JWTUtil {
+
+}

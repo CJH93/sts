@@ -1,0 +1,24 @@
+package com.fullstack.utils;
+
+import java.util.Map;
+
+/*
+ * JWT 생성 클래스
+ * 암호화를 적용해서 내용을 처리한다.
+ * 암호화 하는 방법은 몇 종류가 되는데, SHAKey 암호화 알고리즘을 적용해서 진행할 예정
+ * 이때 중요한게 생성키. 반드시 30자 이상의 고유키가 필요함. 작으면 에러 가능성이 큼
+ */
+
+public class JWTUtil {
+	
+	private static String Key = "123456789012345678901234567890123";
+	
+	// 클라이언트에 넘길 내용을 암호화 하여 생성함
+	// 유효기간도 설정
+	public static String generateToken(Map<String, Object> valueMap, int min) 
+	{
+		
+	}
+	
+	
+}

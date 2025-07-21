@@ -1,0 +1,9 @@
+package com.fullstack.repository.mallapi;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fullstack.domain.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Long>{
+
+}

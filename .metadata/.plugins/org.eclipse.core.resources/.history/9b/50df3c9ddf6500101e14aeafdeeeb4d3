@@ -1,0 +1,73 @@
+package com.fullstack.secure;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.fullstack.domain.ReactMember;
+import com.fullstack.domain.ReactMemberRole;
+import com.fullstack.mallapi.dto.ProductDTO;
+import com.fullstack.repository.secure.MemberRepository;
+
+import lombok.extern.log4j.Log4j2;
+
+@SpringBootTest
+@Log4j2
+public class ReactMemberRepoTests {
+
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	// 암호를 암호화 해주는 암호인코더 빈 get
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	// @Test
+	public void testInsert()
+	{
+		for(int i = 0; i < 10; i++)
+		{
+			ReactMember member = ReactMember.builder()
+					.email("user" + i + "@aaa.com")
+					.pw(passwordEncoder.encode("1111"))
+					.nickName("USER"+i)
+					.build();
+			
+			// 생성된 Member 에 권한 설정
+			member.addRole(ReactMemberRole.USER);
+			
+			// 5 ~ 8 까지는 두 개의 권한, 8 이상은 세 개의 권한 부여
+			if(i >= 5)
+			{
+				member.addRole(ReactMemberRole.MANAGER);
+			}
+			if(i >= 8)
+			{
+				member.addRole(ReactMemberRole.ADMIN);
+			}
+			memberRepository.save(member);
+			
+		}
+	}
+	
+	// 특정 이메일 조회
+	@Test
+	public void testGet()
+	{
+		
+		String email = "user5@aaa.com";
+		
+		ReactMember member = memberRepository.getWithRoles(email);
+				
+		log.info(member);
+	
+}
+
+
+
+
+
+
+
+
