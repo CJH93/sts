@@ -1,0 +1,10 @@
+package com.fullstack.utils;
+
+public class CustomJWTExeption extends RuntimeExceptioni{
+
+	public CustomJWTExeption(String msg)
+	{
+		super(msg);
+	}
+	
+}

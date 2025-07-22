@@ -34,7 +34,7 @@ public class APILoginSuccessHandler implements AuthenticationSuccessHandler{
 		ReactMemberDTO memberDTO = (ReactMemberDTO) authentication.getPrincipal();
 		Map<String, Object> claims = memberDTO.getClaims();
 		
-		String accessToken = JWTUtil.generateToken(claims, 10); // 10분짜리 토큰 생성
+		String accessToken = JWTUtil.generateToken(claims, 1); // 10분짜리 토큰 생성
 		String refreshToken = JWTUtil.generateToken(claims, 60*24);
 		
 		claims.put("accessToken", accessToken);
