@@ -1,0 +1,14 @@
+package com.fullstack.service;
+
+import com.fullstack.domain.secure.ReactMemberDTO;
+
+public class MemberServiceImpl implements MemberService {
+
+	@Override
+	public ReactMemberDTO getKakaoMember(String accessToken) {
+
+		
+		return null;
+	}
+
+}

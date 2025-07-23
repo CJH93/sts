@@ -1,0 +1,26 @@
+package com.fullstack.service;
+
+import org.springframework.stereotype.Service;
+
+import com.fullstack.domain.secure.ReactMemberDTO;
+import com.fullstack.repository.secure.MemberRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@RequiredArgsConstructor
+@Log4j2
+public class MemberServiceImpl implements MemberService {
+
+	private final MemberRepository memberRepository;
+	
+	
+	@Override
+	public ReactMemberDTO getKakaoMember(String accessToken) {
+
+		
+		return null;
+	}
+
+}

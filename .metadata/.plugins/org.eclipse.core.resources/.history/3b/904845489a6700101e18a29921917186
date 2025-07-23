@@ -1,0 +1,12 @@
+package com.fullstack.service;
+
+import com.fullstack.domain.secure.ReactMemberDTO;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+public interface MemberService {
+
+	ReactMemberDTO getKakaoMember(String accessToken);
+	
+}

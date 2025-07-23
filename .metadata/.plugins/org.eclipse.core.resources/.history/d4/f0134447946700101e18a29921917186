@@ -1,0 +1,84 @@
+package com.fullstack.service;
+
+import java.util.LinkedHashMap;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.fullstack.domain.secure.ReactMemberDTO;
+import com.fullstack.repository.secure.MemberRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@RequiredArgsConstructor
+@Log4j2
+public class MemberServiceImpl implements MemberService {
+
+	private final MemberRepository memberRepository;
+	
+	@Override
+	public ReactMemberDTO getKakaoMember(String accessToken) {
+
+		String email = getEmailFromKakaoAccessToken(accessToken);
+		
+	}
+	
+	// 전송된 토큰을 이용해서 사용자의 이메일(ID) 를 리턴하도록 메서드 정의
+	// 이 메서드를 위에서 사용
+	private String getEmailFromKakaoAccessToken(String accessToken)
+	{
+		String kakaoAccessURL = "https://kapi.kakao.com/v2/user/me";
+		
+		if(accessToken == null)
+		{
+			throw new RuntimeException("Access Token is NULL");
+		}
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		// 메서드를 이용해서 target rest 서버에 header 정보와 body 를 세팅
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "Bearer " + accessToken);
+		headers.add("Content-Type", "application/x-www-form-urlencoded");
+		HttpEntity<String> entity = new HttpEntity<String>(headers);
+		
+		UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(kakaoAccessURL).build();
+		
+		ResponseEntity<LinkedHashMap> response = restTemplate
+				.exchange(uriComponents.toString(), 
+						HttpMethod.GET, 
+						entity, 
+						LinkedHashMap.class);
+		
+		log.info("------------------카카오 인증 서버의 결과 값 : " + response);
+		
+		LinkedHashMap<String, LinkedHashMap> bodyMap = response.getBody();
+		
+		log.info("사용자의 허용 정보 : " + bodyMap);
+		
+		
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
