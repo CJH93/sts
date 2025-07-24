@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fullstack.domain.ReactMember;
 import com.fullstack.domain.ReactMemberRole;
 import com.fullstack.domain.secure.ReactMemberDTO;
+import com.fullstack.domain.secure.ReactMemberModifyDTO;
 import com.fullstack.repository.secure.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -67,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		Optional<ReactMember> res = memberRepository.findById(email);
 		
-		if(res.isEmpty())
+		if(!res.isEmpty())
 		{
 			// 기존 회원이 SNS 로 로그인
 			ReactMemberDTO dto = entityToDTO(res.get());
@@ -122,6 +123,22 @@ public class MemberServiceImpl implements MemberService {
 		log.info("카카오 계정 정보 : " + kakaoAccount);
 		
 		return kakaoAccount.get("email");
+	}
+
+	@Override
+	public void modifyMember(ReactMemberModifyDTO dto) {
+
+		Optional<ReactMember> result = memberRepository.findById(dto.getEmail());
+		
+		ReactMember member = result.orElseThrow();
+		
+		member.changePw(passwordEncoder.encode(dto.getPw()));
+		member.changeNickName(dto.getNickname());
+		member.changeSocial(false);
+		
+		memberRepository.save(member);
+		
+		
 	}
 	
 }

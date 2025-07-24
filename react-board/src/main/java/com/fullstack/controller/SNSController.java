@@ -1,10 +1,17 @@
 package com.fullstack.controller;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fullstack.domain.secure.ReactMemberDTO;
+import com.fullstack.domain.secure.ReactMemberModifyDTO;
 import com.fullstack.service.MemberService;
+import com.fullstack.utils.JWTUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,14 +23,40 @@ public class SNSController {
 
 	private final MemberService memberService;
 	
+	// 수정 요청 처리
+	@PutMapping("/api/member/modify")
+	public Map<String, String> modify(@RequestBody ReactMemberModifyDTO dto)
+	{
+		log.info(dto);
+		
+		memberService.modifyMember(dto);
+		
+		return Map.of("result", "수정 성공");
+	}
+	
+	
 	@GetMapping("/api/member/kakao")
-	public String[] getMemberFromKakao(@RequestParam("accessToken") String accessToKen)
+	public Map<String, Object> getMemberFromKakao(@RequestParam("accessToken") String accessToKen)
 	{
 		log.info("---------------------accessToken--------------------- :::: " + accessToKen);
 		
-		memberService.getKakaoMember(accessToKen);
+		ReactMemberDTO dto = memberService.getKakaoMember(accessToKen);
 		
-		return new String[] {"AAA", "BBB", "CCC"};
+		// dto 정보를 생성했으니 이 사용자에게 access token 을 발행해서 같이 넘겨줌
+		Map<String, Object> claims = dto.getClaims();
+		
+		// 토큰 생성
+		String jwtAccessToken = JWTUtil.generateToken(claims, 10 * 6);
+		String jwtRefreshToken = JWTUtil.generateToken(claims, 60 * 24);
+		
+		log.info("jwtAccessToken -----------------> " + jwtAccessToken);
+		log.info("jwtRefreshToken -----------------> " + jwtRefreshToken);
+		
+		claims.put("accessToken", jwtAccessToken);
+		claims.put("refreshToken", jwtRefreshToken);
+		
+		return claims;
+		
 		
 	}
 	

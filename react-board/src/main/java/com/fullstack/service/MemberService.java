@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import com.fullstack.domain.ReactMember;
 import com.fullstack.domain.secure.ReactMemberDTO;
+import com.fullstack.domain.secure.ReactMemberModifyDTO;
 
 import jakarta.transaction.Transactional;
 
@@ -12,13 +13,20 @@ public interface MemberService {
 
 	ReactMemberDTO getKakaoMember(String accessToken);
 	
+	void modifyMember(ReactMemberModifyDTO dto);
+	
 	default ReactMemberDTO entityToDTO(ReactMember member)
 	{
+		System.out.println(member);
 		ReactMemberDTO dto = new ReactMemberDTO(member.getEmail(), 
 				member.getPw(), 
 				member.getNickName(), 
 				member.isSocial(),
 				member.getMemberRoleList().stream().map(memberRole -> memberRole.name()).collect(Collectors.toList()));
+		
+		System.out.println(dto);
+		
+		
 		
 		return dto;
 	}

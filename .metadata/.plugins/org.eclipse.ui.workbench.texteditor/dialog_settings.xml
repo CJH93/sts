@@ -17,6 +17,8 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="system"/>
+			<item value="authHeader"/>
 			<item value="loadUser"/>
 			<item value="uploadFile"/>
 			<item value="gno"/>
